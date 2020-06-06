@@ -27,16 +27,18 @@ function Circle(
   this.MAX_RADIUS = 40;
   this.MIN_RADIUS = radius;
   this.colorsAvailable = [
-    '#ffaa33',
-    '#99ffaa',
-    '#00ff00',
-    '#4411aa',
-    '#ff1100',
+    '255,170,51',
+    '153,255,170',
+    '0,255,0',
+    '68,17,170',
+    '255,17,0',
   ];
 
-  this.color = this.colorsAvailable[
+  this.rgbColor = this.colorsAvailable[
     Math.floor(Math.random() * this.colorsAvailable.length)
   ];
+  this.color = 'rgba(' + this.rgbColor + ', 1)';
+
   this.context = context;
   this.radius = radius;
   this.mouse = mouse;
@@ -50,6 +52,8 @@ function Circle(
     this.context.arc(x, y, this.radius, 0, Math.PI * 2, false);
     this.context.lineWidth = 1;
     this.context.strokeStyle = this.color;
+    this.context.fillStyle = 'rgba(' + this.rgbColor + ', 0.6)';
+    this.context.fill();
     this.context.stroke();
   };
 
@@ -121,7 +125,7 @@ function Circle(
       SET_COLOR: () => {
         this.context.fillStyle = this.color;
         this.context.fill();
-        this.context.strokeStyle = '#000';
+        this.context.strokeStyle = this.color;
         this.context.stroke();
       },
     };
